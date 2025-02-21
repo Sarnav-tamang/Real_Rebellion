@@ -3,22 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Teacher</title>
+    <title>Room Management</title>
     <link rel="stylesheet" href="/rebellion/css/firstry.css" />
-
-    <script
-      type="text/javascript"
-      defer
-      src="/rebellion/js/firstry.js"
-      defer
-    ></script>
+    <link rel="stylesheet" href="/rebellion/css/firstryMangExam.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_downward" />
+    <style>
+      #roomForm *{
+        margin: 11px;
+        padding: 8px;
+      }
+      div[class="Check_Sheet"]{
+        max-width: 10em;
+        background-color: rgb(29, 114, 114);
+        text-align: center;
+        border-radius: 8px;
+        border: 3px solid;
+        transition: 100ms ease-in-out;
+      }
+      div[class="Check_Sheet"]:hover,div[class="Check_Sheet"]:focus
+        {
+          border-radius: 15px;
+          background-color:rgb(3, 82, 82) ;
+      }
+ 
+    </style>
   </head>
 
   <body>
     <nav id="sidebar">
       <ul>
         <li>
-          <span class="logo">📊 Owl</span>
+          <span class="logo">📊</span>
           <button onclick="toggleSidebar()" id="toggle-btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -77,13 +92,12 @@
           </button>
           <ul class="sub-menu">
             <div>
-              <li class="active">
-                <a href="firstry_addteach.html">Add Teacher</a>
-              </li>
+              <li><a href="firstry_addteach.html">Add Teacher</a></li>
               <li><a href="firstry_addstudent.html">Add Student</a></li>
             </div>
           </ul>
         </li>
+
         <li>
           <button onclick="toggleSubMenu(this)" class="dropdown-btn">
             <svg
@@ -113,7 +127,7 @@
           <ul class="sub-menu">
             <div>
               <li class>
-                <a href="firstry_addteach.html">Remove Teacher</a>
+                <a href="firstry_add.html">Remove Teacher</a>
               </li>
               <li><a href="firstry_addstudent.html">Remove Student</a></li>
             </div>
@@ -147,7 +161,7 @@
           </button>
           <ul class="sub-menu">
             <div>
-              <li><a href="#">Room</a></li>
+              <li class="active"><a href="firstry_MangRooms.html">Room</a></li>
               <li><a href="firstry_ManagExam.html">Exam</a></li>
               <li><a href="#">Conflict</a></li>
             </div>
@@ -187,98 +201,115 @@
         </li>
       </ul>
     </nav>
-
     <main>
-      <div class="container2">
-        <form class="teacher-form" method="post" name="google-sheet">
-          <h2 class="form-title">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              fill="#e8eaed"
-            >
-              <path
-                d="M320-112q-53 0-89.5-36.5T194-238v-131h132v-90q-31-5-60.5-19.5T213-518v-40h-41L34-697q43-47 97-68.5T241-787q20 0 41.5 3.5T326-773v-76h548v583q0 63-45.5 108.5T720-112H320Zm132-257h240v103q0 12 8 20t20 8q12 0 20-8t8-20v-457H452v27l205 206v67h-67l-95-96-2 2q-10 10-20 18.5T452-485v116ZM212-653h96v89q10 5 22 8t23 3q20 0 37-6.5t31-20.5l5-5-49-50q-29-29-63-43t-73-14q-16 0-30.5 2t-28.5 7l30 30Zm354 379H320v36h252q-3-8-4.5-16.5T566-274Zm-246 36v-36 36Z"
-              />
-            </svg>
-            Add Teacher
-          </h2>
-
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              placeholder="Enter username"
-              class="form-input"
-              required
-              name="Username"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter email"
-              class="form-input"
-              required
-              name="Email"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="department">Department</label>
-            <select
-              id="department"
-              class="form-select"
-              required
-              name="Department"
-            >
-              <option value="" disabled selected hidden>
-                Select Department
-              </option>
-              <option value="computer">Computer</option>
-
-              <option value="math">Mathematics</option>
-              <option value="science">Science</option>
-              <option value="english">English</option>
-              <option value="history">History</option>
-            </select>
-          </div>
-
-          <button type="submit" class="submit-btn" name="Submit">
-            Add Teacher
-          </button>
+      <h2
+        style="
+          color: rgb(29, 197, 127);
+          text-align: center;
+          margin-bottom: 18px;
+        "
+      >
+        Room Management
+      </h2>
+      <div class="containerMain">
+        <form id="roomForm" name="google-sheet" method="post">
+          <!-- Room Identifier -->
+          <label for="roomId">Room Identifier:</label>
+          <input
+            type="text"
+            id="roomId"
+            
+            placeholder="BLOCK-A-101"
+            
+            required
+            name="Room Identifier"
+          />
           <br />
-          <a
+          <!-- Capacity -->
+          <label for="capacity">Capacity:</label>
+          <input
+            type="number"
+            id="capacity"
+            
+            min="1"
+            max="200"
+            required
+            name="Capacity"
+          />
+          <br />
+          <!-- Room Type -->
+          <label for="roomType">Room Type:</label>
+          <select id="roomType"  required name="Room Type">
+            <option value="">Select Type</option>
+            <option value="lecture">Lecture Hall</option>
+            <option value="lab">Laboratory</option>
+            <option value="seminar">Seminar Room</option>
+          </select>
+          <br />
+          <!-- Features -->
+          <fieldset id="Room-Field">
+            <legend>Room Features</legend>
+            <label
+              ><input type="checkbox" name="Feature" value="projector"/>
+              Projector</label
+            >
+            <label
+              ><input type="checkbox" name="Feature" value="whiteboard"/>
+              Whiteboard</label
+            >
+            <label
+              ><input type="checkbox" name="Feature" value="ac" /> AC</label
+            >
+            <label
+              ><input type="checkbox" name="Feature" value="computers" />
+              Computers</label
+            >
+          </fieldset>
+
+          <div class="button-group">
+            <button type="submit" name="Submit">Add a Room</button>
+            
+            </button>
+          </div>
+
+          
+          <span class="spanforanchor"><a
             target="_blank"
             class="Sheet_Link"
-            href="https://docs.google.com/spreadsheets/d/1EdM05r7xl8uClGFQXftSTpXaUkv-r3Zjv818FA9SMRw/edit?usp=sharing"
+            href="https://docs.google.com/spreadsheets/d/1BZ7wrQ0Zh3P4PJnukVf9_jMP973zIWAVD_WZm3X1nVM/edit?usp=sharing"
           >
-            <div class="sameasSubmit">Check Sheet</div>
+            <div class="Check_Sheet">Check Sheet</div>
           </a>
-          <br />
+          </span>
         </form>
+       
       </div>
+  
     </main>
-    <!-- Google Sheets -->
-    <script>
-      const scriptURL =
-        "https://script.google.com/macros/s/AKfycbxGknLZoz7h2G-snO64Ahmlu5Xvt90KExzNFptJ6DA4-3qJzbl7tYNoF5tmLnwSmCJU/exec";
-      const form = document.forms["google-sheet"];
 
-      form.addEventListener("submit", (e) => {
+    <script type="text/javascript" src="/rebellion/js/firstry.js"></script>
+    <script>
+      document.getElementById("roomForm").addEventListener("submit", function(e) {
         e.preventDefault();
-        fetch(scriptURL, { method: "POST", body: new FormData(form) })
-          .then((response) =>
-            alert("Thanks for Contacting us..! We Will Contact You Soon...")
-          )
-          .catch((error) => console.error("Error!", error.message));
-      });
+    
+        // Get all checked checkboxes and concatenate values into a string
+        let feature = Array.from(document.querySelectorAll('input[name="Feature"]:checked'))
+                           .map(cb => cb.value)
+                           .join(", "); // Join selected values with commas
+    
+        let formData = new FormData(this);
+        formData.set("Feature", feature); // Store selected features
+    
+        fetch("https://script.google.com/macros/s/AKfycbz4ZwnAKr7P7oFuaF7oMUCDH900VJbAaU56iLMGBEZ0EgpXH9vRwh8UmatMS8i4HKrn/exec", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => console.log("Success:", data))
+        .catch(error => console.error("Error:", error));
+    });
+    
     </script>
+
   </body>
 </html>

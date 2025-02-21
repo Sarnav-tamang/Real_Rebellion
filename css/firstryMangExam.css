@@ -69,14 +69,14 @@
   background: #1c38b4;
   transform: scaleX(1.1);
 }
-.containerMain input {
+.containerMain input:not([type="checkbox"]) {
   outline: 2px solid #28a745;
   width: 11rem;
   transition: 300ms ease-in;
   height: 24px;
 }
 
-.containerMain input:focus {
+.containerMain input:not([type="checkbox"]):focus {
   outline: none;
   border-color: #1e3ea8;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
@@ -119,7 +119,21 @@
 .containerMain select[required] option[value=""] {
   display: none;
 }
+/* Checkbox */
+#Room-Field input[type="checkbox"] {
+  /* Hides the default checkbox */
+  accent-color: #58a0ca; /* Changes the checkbox color */
 
+  transition: transform 100ms ease, background-color 100ms ease;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* When checked, scale the checkbox */
+#Room-Field input[type="checkbox"]:checked {
+  transform: scale(1.2);
+  /* Darker green when checked */
+}
 /* Media */
 /* firstry.css - Add these to the existing media section or adjust accordingly */
 
@@ -146,10 +160,14 @@
     gap: 1rem;
   }
 
-  .containerMain input,
+  .containerMain input:not([type="checkbox"]),
   .containerMain select {
     width: 100% !important;
-    margin: 5px 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .containerMain button {
@@ -177,8 +195,14 @@
     font-size: 0.9rem;
   }
 
-  .containerMain input {
+  .containerMain input:not([type="checkbox"]) {
     font-size: 0.9rem;
+    width: 100% !important;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .containerMain select {
@@ -208,8 +232,14 @@
     font-size: 1.3rem;
   }
 
-  .containerMain input,
+  .containerMain input:not([type="checkbox"]),
   .containerMain select {
     font-size: 0.8rem;
+    width: 100% !important;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }

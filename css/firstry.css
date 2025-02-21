@@ -154,12 +154,14 @@ main p {
   max-width: 600px;
   margin: 1.5rem auto;
   padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.27);
+  backdrop-filter: blur(8px);
   box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   border: 2px solid #7e7e76;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
 }
 
 .teacher-form {
@@ -170,7 +172,7 @@ main p {
 
 .form-title {
   text-align: center;
-  color: #2c3e50;
+  color: #252a2e;
   margin-bottom: 1rem;
   font-size: 1.8rem;
 }
@@ -183,7 +185,7 @@ main p {
 
 label {
   font-weight: 500;
-  color: #34495e;
+  color: #0f1214;
   font-size: 0.9rem;
 }
 
@@ -228,7 +230,33 @@ label {
 }
 
 .submit-btn:hover {
-  background: #7664dd;
+  background: #4ba596;
+}
+div[class="sameasSubmit"] {
+  background: #1a2b8d;
+  padding: 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+  text-align: center;
+}
+.Sheet_Link {
+  all: unset;
+  text-decoration: none;
+  color: #e1e7ec;
+}
+.spanforanchor {
+  display: flex;
+  justify-content: center;
+}
+div[class="sameasSubmit"]:hover {
+  background-color: #0e0735;
+  text-decoration: none; /* Ensures no underline appears on hover/focus */
+  color: inherit; /* Keeps text color unchanged */
+  outline: none;
 }
 
 /* Remove default dropdown arrow in IE */
@@ -242,32 +270,98 @@ select::-ms-expand {
 }
 
 /* Dashboard Charts*/
-main h2,
-#Douh {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  padding: 2%;
-}
+/* Css of that rule */
 main .headerformain2 {
   position: relative;
-  width: max-content;
+  text-align: center;
+  margin: 1.5rem 0;
+  padding-bottom: 0.5rem;
 }
-/* DashboardCharts horizontal rule */
-main .headerformain2::after {
-  content: "";
-  background-color: #42646d;
-  height: 5px;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
 
+/* DashboardCharts horizontal rule */
+.headerformain2::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 33%;
+  height: 5px;
   transition: 100ms;
+  background-color: #42646d;
 }
 main .headerformain2:hover::after {
   width: 0;
+}
+/* Width of Charts */
+#Barr {
+  width: 90%;
+}
+
+/* table Container 1*/
+#table-container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+/* Table Beautification */
+
+th,
+td {
+  text-align: center;
+  padding: 8px;
+  gap: 11px;
+}
+th {
+  font-size: 1.3em;
+  background-color: #304b34;
+}
+
+tr:nth-child(n) {
+  background-color: #35394e;
+}
+/* Horizontal RUle but Vertical*/
+#Doughnut-Container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Douh,
+#table-container2 {
+  flex: 1;
+  text-align: center;
+}
+.vertical-line {
+  width: 5px;
+  height: 33em; /* Adjust height */
+  background-color: #42646d; /* Change color as needed */
+  margin: 0 20px;
+}
+
+/* Settings */
+
+#doubleContainers {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.dchild {
+  background: none;
+  color: white;
+  border: 2px solid whitesmoke;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dchild:hover {
+  background-color: #245b96;
 }
 /* Media */
 @media (max-width: 800px) {
@@ -276,6 +370,8 @@ main .headerformain2:hover::after {
   }
   main {
     padding: 2em 1em 60px 1em;
+    margin-bottom: 8rem;
+    margin-top: 4fr;
   }
   .container {
     border: none;
@@ -342,5 +438,57 @@ main .headerformain2:hover::after {
         justify-content: center;
       }
     }
+  }
+}
+
+/* Media For Chart ---------------- */
+@media (max-width: 1200px) {
+  main {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerformain2 {
+    font-size: 1.3rem;
+  }
+
+  #Douh {
+    width: 70% !important;
+  }
+
+  .main-container > div:first-child {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerformain2 {
+    font-size: 1.1rem;
+    margin: 1rem 0;
+  }
+
+  #Douh {
+    width: 90% !important;
+  }
+
+  main {
+    padding: 1.5rem 1rem;
+  }
+
+  canvas {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .headerformain2 {
+    font-size: 1rem;
+  }
+
+  #Douh {
+    width: 100% !important;
   }
 }

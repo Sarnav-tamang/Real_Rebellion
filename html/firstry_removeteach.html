@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Teacher</title>
+    <title>Remove Teacher</title>
     <link rel="stylesheet" href="/rebellion/css/firstry.css" />
 
     <script
@@ -46,7 +46,7 @@
                 d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z"
               />
             </svg>
-            <span>Home/Dashboard</span>
+            <span>Home</span>
           </a>
         </li>
         <li>
@@ -112,7 +112,7 @@
           </button>
           <ul class="sub-menu">
             <div>
-              <li class>
+              <li class="active">
                 <a href="firstry_removeteach.html">Remove Teacher</a>
               </li>
               <li><a href="firstry_addstudent.html">Remove Student</a></li>
@@ -188,62 +188,6 @@
       </ul>
     </nav>
 
-    <main>
-      <div class="container2">
-        <form class="teacher-form">
-          <h2 class="form-title">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              fill="#e8eaed"
-            >
-              <path
-                d="M320-112q-53 0-89.5-36.5T194-238v-131h132v-90q-31-5-60.5-19.5T213-518v-40h-41L34-697q43-47 97-68.5T241-787q20 0 41.5 3.5T326-773v-76h548v583q0 63-45.5 108.5T720-112H320Zm132-257h240v103q0 12 8 20t20 8q12 0 20-8t8-20v-457H452v27l205 206v67h-67l-95-96-2 2q-10 10-20 18.5T452-485v116ZM212-653h96v89q10 5 22 8t23 3q20 0 37-6.5t31-20.5l5-5-49-50q-29-29-63-43t-73-14q-16 0-30.5 2t-28.5 7l30 30Zm354 379H320v36h252q-3-8-4.5-16.5T566-274Zm-246 36v-36 36Z"
-              />
-            </svg>
-            Add Teacher
-          </h2>
-
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              placeholder="Enter username"
-              class="form-input"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter email"
-              class="form-input"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="department">Department</label>
-            <select id="department" class="form-select" required>
-              <option value="" disabled selected hidden>
-                Select Department
-              </option>
-              <option value="math">Mathematics</option>
-              <option value="science">Science</option>
-              <option value="english">English</option>
-              <option value="history">History</option>
-            </select>
-          </div>
-
-          <button type="submit" class="submit-btn">Remove Teacher</button>
-        </form>
-      </div>
-    </main>
+    <main></main>
   </body>
 </html>

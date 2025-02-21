@@ -187,10 +187,11 @@
         </li>
       </ul>
     </nav>
+    *
 
     <main>
       <div class="container2">
-        <form class="teacher-form">
+        <form class="teacher-form" method="post" name="google-sheet">
           <h2 class="form-title">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -214,6 +215,7 @@
               placeholder="Enter username"
               class="form-input"
               required
+              name="Username"
             />
           </div>
 
@@ -225,12 +227,29 @@
               placeholder="1012205030320"
               class="form-input"
               required
+              name="Roll-No"
+            />
+          </div>
+          <div class="form-group">
+            <label for="Subject">Subject</label>
+            <input
+              type="text"
+              id="Subject"
+              placeholder="Subject1"
+              class="form-input"
+              required
+              name="Subject"
             />
           </div>
 
           <div class="form-group">
             <label for="department">Semester</label>
-            <select id="department" class="form-select" required>
+            <select
+              id="department"
+              class="form-select"
+              required
+              name="Semester"
+            >
               <option value="" disabled selected hidden>Select Semester</option>
               <option value="1st Semester">1st Semester</option>
               <option value="2nd Semester">2nd Semester</option>
@@ -243,9 +262,35 @@
             </select>
           </div>
 
-          <button type="submit" class="submit-btn">Add Student</button>
+          <button type="submit" class="submit-btn" name="Submit">
+            Add Student</button
+          ><br />
+          <a
+            target="_blank"
+            class="Sheet_Link"
+            href="https://docs.google.com/spreadsheets/d/1Y7PnpQBzQk1vBfx8T78n_iekmgkrXowRAIBVT2nCrZc/edit?usp=sharing"
+          >
+            <div class="sameasSubmit">Check Sheet</div>
+          </a>
+          <br />
         </form>
       </div>
     </main>
+
+    <!-- Google Sheets -->
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbw_XlsKodmWR0aY1DZBX5a10HdaFzwAQrgS9v9wsviDFCrNtsFDYE95k_jxPh0tKVg/exec";
+      const form = document.forms["google-sheet"];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) =>
+            alert("Thanks for Contacting us..! We Will Contact You Soon...")
+          )
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
   </body>
 </html>

@@ -8,7 +8,7 @@ const myChart = new Chart(ctx, {
       {
         label: "Dataset Bar Chart",
 
-        data: [20, 45, 16, 3],
+        data: [21, 45, 16, 3],
         backgroundColor: [
           "rgba(255, 99, 99, 0.62)", // Red
           "rgba(54, 162, 235, 0.5)", // Blue
@@ -63,3 +63,12 @@ const myChart = new Chart(ctx, {
 
 // myChart.data.datasets[0].data = [1, 1, 1, 1];
 // myChart.update();
+
+// Linking Chart With Table
+// Move this OUTSIDE the chart initialization
+const barTableCells = document.querySelectorAll(
+  "#table-container1 table tr:nth-child(2) td"
+);
+myChart.data.datasets[0].data.forEach((value, index) => {
+  barTableCells[index].textContent = value;
+});

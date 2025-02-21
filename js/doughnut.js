@@ -1,12 +1,12 @@
 window.onload = function () {
   const ctx = document.getElementById("myChart2");
-
   if (!ctx) {
     console.error("Canvas element #myChart2 not found!");
     return;
   }
 
-  new Chart(ctx.getContext("2d"), {
+  // Create and store the Chart instance
+  const chart = new Chart(ctx.getContext("2d"), {
     type: "doughnut",
     data: {
       labels: ["Room1", "Room2", "Room3", "Room4", "Room5", "Room6"],
@@ -37,5 +37,22 @@ window.onload = function () {
     options: {
       responsive: true,
     },
+  });
+
+  // === Update the table with the chart data AFTER chart creation ===
+  const doughnutData = chart.data.datasets[0].data;
+
+  // Adjust the selector if your table layout differs
+  const doughnutTableRows = document.querySelectorAll(
+    "#table-container2 table tr:nth-child(2), #table-container2 table tr:nth-child(4)"
+  );
+
+  doughnutTableRows.forEach((row, rowIndex) => {
+    const cells = row.querySelectorAll("td");
+    cells.forEach((cell, cellIndex) => {
+      // Example: If each row has 3 cells, dataIndex = rowIndex * 3 + cellIndex
+      const dataIndex = rowIndex * 3 + cellIndex;
+      cell.textContent = doughnutData[dataIndex];
+    });
   });
 };

@@ -11,7 +11,7 @@
     <nav id="sidebar">
       <ul>
         <li>
-          <span class="logo">📊</span>
+          <span class="logo">📊Owl</span>
           <button onclick="toggleSidebar()" id="toggle-btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +139,7 @@
           </button>
           <ul class="sub-menu">
             <div>
-              <li><a href="#">Room</a></li>
+              <li><a href="firstry_MangRooms.html">Room</a></li>
               <li><a href="firstry_ManagExam.html">Exam</a></li>
               <li><a href="#">Conflict</a></li>
             </div>
@@ -162,7 +162,7 @@
           </a>
         </li>
         <li>
-          <a href="">
+          <a href="firstry_Settings.html">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -180,19 +180,92 @@
       </ul>
     </nav>
     <main>
-      <h2 class="headerformain2">---Bar Chart ---</h2>
-      <div class="main-container">
-        <div style="width: 90%; height: 60%">
+      <!-- In the Bar Chart section -->
+      <h2 class="headerformain2">Bar Char - (Data)</h2>
+      <div class="chart-table-container">
+        <div id="Barr">
           <canvas id="myChart"></canvas>
         </div>
+        <hr
+          style="
+            border: 2px solid #42646d;
+            width: 88%;
+            transform: translateX(5%);
+            margin: 5px;
+          "
+        />
         <br />
-        <hr style="border: 2px solid #42646d" />
+        <h2 class="headerformain2">Bar Chart-Tabular Data</h3>
+
         <br />
-        <h2 class="headerformain2">--- Doughnut Chart ---</h2>
-        <div style="width: 40%; height: 40%" id="Douh">
-          <canvas id="myChart2"></canvas>
+        <div id="table-container1">
+          <table>
+            <tr>
+              <th>Teachers</th>
+              <th>Students</th>
+              <th>Rooms Available</th>
+              <th>Our Developers</th>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
         </div>
       </div>
+      <hr
+        style="
+          border: 4px solid #42646d;
+
+          margin: 5px;
+        "
+      />
+      <!-- In the Doughnut Chart section -->
+      <h2 class="headerformain2">Doughnut Chart- (Data)</h2>
+      <div class="chart-table-container" id="Doughnut-Container">
+        <div id="Douh" class="Douh">
+          <canvas id="myChart2"></canvas>
+        </div>
+        <div class="vertical-line"></div>
+
+        <div id="table-container2">
+          <h3 class="TabularData" style="text-align:left;">Tabular Data</h3>
+
+          <table>
+            <tr>
+              <th>Room1</th>
+              <th>Room2</th>
+              <th>Room3</th>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Room4</th>
+              <th>Room5</th>
+              <th>Room6</th>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <hr
+          style="
+            border: 4px solid #42646d;
+            
+            
+            margin: 11px;
+          "
+        />
     </main>
     <!-- Load Chart.js first -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

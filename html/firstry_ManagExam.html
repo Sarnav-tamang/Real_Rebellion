@@ -6,6 +6,25 @@
     <title>Make Exams</title>
     <link rel="stylesheet" href="/rebellion/css/firstry.css" />
     <link rel="stylesheet" href="/rebellion/css/firstryMangExam.css" />
+    <style>
+      div[class="Check_Sheet"] {
+        max-width: 10em;
+        min-width: 9em;
+
+        background-color: rgb(29, 114, 114);
+        text-align: center;
+        border-radius: 8px;
+        border: 3px solid;
+        transition: 100ms ease-in-out;
+        margin-top: 3em;
+        padding: 9px;
+      }
+      div[class="Check_Sheet"]:hover,
+      div[class="Check_Sheet"]:focus {
+        border-radius: 15px;
+        background-color: rgb(3, 82, 82);
+      }
+    </style>
   </head>
 
   <body>
@@ -142,8 +161,8 @@
           </button>
           <ul class="sub-menu">
             <div>
-              <li><a href="#">Room</a></li>
-              <li><a href="firstry_ManagExam.html">Exam</a></li>
+              <li><a href="firstry_MangRooms.html">Room</a></li>
+              <li class="active"><a href="firstry_ManagExam.html">Exam</a></li>
               <li><a href="#">Conflict</a></li>
             </div>
           </ul>
@@ -194,11 +213,11 @@
         Exam Management
       </h2>
       <div class="containerMain">
-        <form action="/submit" method="post">
+        <form name="google-sheet">
           <!-- Course Multi-Select -->
 
           <label for="course">Course:</label>
-          <select id="course" name="course" required>
+          <select id="course" name="Course" required>
             <option value="">Select Course</option>
             <option value="Computer">Computer</option>
             <option value="Maths">Maths</option>
@@ -214,9 +233,10 @@
           <input
             type="text"
             id="examName"
-            name="examName"
             placeholder="e.g., Midterm"
             required
+            class="Exam-input"
+            name="Exam Name"
           />
           <br /><br />
 
@@ -226,11 +246,12 @@
           <input
             type="text"
             id="examDate"
-            name="examDate"
             placeholder="dd/mm/yyyy"
             pattern="\d{2}/\d{2}/\d{4}"
             maxlength="10"
             required
+            class="Exam-input"
+            name="Exam Date"
           />
 
           <br /><br />
@@ -243,51 +264,44 @@
             <input
               type="text"
               id="startTime"
-              name="startTime"
+              name="Start Time"
               placeholder="hh:mm"
               pattern="[0-2][0-9]:[0-5][0-9]"
               maxlength="5"
               required
+              class="Exam-input"
             />
 
             <select id="startMeridiem" name="startMeridiem">
               <option value="AM">AM</option>
               <option value="PM">PM</option>
             </select>
-            <br /><br />
+            <br />
             <label for="endTime">End Time:</label>
             <!-- End Time -->
             <input
               type="text"
               id="endTime"
-              name="endTime"
+              name="End Time"
               placeholder="hh:mm"
               pattern="[0-2][0-9]:[0-5][0-9]"
               maxlength="5"
               required
+              class="Exam-input"
             />
+
             <select id="endMeridiem" name="endMeridiem">
               <option value="AM">AM</option>
               <option value="PM">PM</option>
             </select>
+            <br />
           </fieldset>
-          <br />
 
-          <!-- Exam Duration -->
-          <label for="duration">Exam Duration (minutes):</label>
-          <input
-            type="number"
-            id="duration"
-            name="duration"
-            placeholder="Enter duration in minutes"
-            min="1"
-            required
-          />
           <br /><br />
 
           <!-- Room Multi-Select -->
           <label for="room">Room:</label>
-          <select id="room" name="room" required>
+          <select id="room" name="Room" required>
             <option value="">Select Room</option>
             <option value="Room 101">Room 101</option>
             <option value="Room 102">Room 102</option>
@@ -299,26 +313,79 @@
 
           <!-- Supervising Teacher Multi-Select -->
           <label for="teacher">Supervising Teacher:</label>
-          <select id="teacher" name="teacher" required>
+          <select id="teacher" name="Teacher" required>
             <option value="">Select Supervising Teacher</option>
-            <option value="Mr. Smith">Mr. Smith</option>
-            <option value="Ms. Johnson">Ms. Johnson</option>
-            <option value="Dr. Brown">Dr. Brown</option>
-            <option value="Prof. Lee">Prof. Lee</option>
+            <option value="Mr. Smith" name="Teacher">Mr. Smith</option>
+            <option value="Ms. Johnson" name="Teacher">Ms. Johnson</option>
+            <option value="Dr. Brown" name="Teacher">Dr. Brown</option>
+            <option value="Prof. Lee" name="Teacher">Prof. Lee</option>
           </select>
           <br /><br />
 
           <!-- Submit Button -->
-          <button type="submit">Schedule Exam</button>
+          <button type="submit" name="Submit">Schedule Exam</button>
         </form>
+        <span class="spanforanchor"
+          ><a
+            target="_blank"
+            class="Sheet_Link"
+            href="https://docs.google.com/spreadsheets/d/163neHbjKWojM6mOoqy8QHfaU2r5mgFZRzNKta6bmsHg/edit?usp=sharing"
+          >
+            <div class="Check_Sheet">Check Sheet</div>
+          </a>
+        </span>
       </div>
     </main>
     <script>
       window.addEventListener("DOMContentLoaded", () => {
+        // Load firstry.js dynamically
         const script = document.createElement("script");
         script.src = "/rebellion/js/firstry.js";
         script.onerror = () => console.error("Failed to load firstry.js");
         document.head.appendChild(script);
+
+        // Handle Google Sheets form submission
+        const scriptURL =
+          "https://script.google.com/macros/s/AKfycbxu9mWDn6jItHjo4qky5uKa8pfpyoX9fmI43DQHBNumrk3DNVz6v2hgOgbeVDxE8lNK/exec";
+        const form = document.forms["google-sheet"];
+
+        if (form) {
+          form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            // Combine time inputs with AM/PM
+            const startTime = `${form["Start Time"].value} ${form.startMeridiem.value}`;
+            const endTime = `${form["End Time"].value} ${form.endMeridiem.value}`;
+
+            // Create new FormData and update time values
+            const formData = new FormData(form);
+            formData.set("Start Time", startTime);
+            formData.set("End Time", endTime);
+
+            // Remove the separate AM/PM fields
+            formData.delete("startMeridiem");
+            formData.delete("endMeridiem");
+
+            fetch(scriptURL, {
+              method: "POST",
+              body: formData,
+            })
+              .then((response) => {
+                if (response.ok) {
+                  alert("Exam scheduled successfully!");
+                  form.reset();
+                } else {
+                  throw new Error("Network response was not ok");
+                }
+              })
+              .catch((error) => {
+                console.error("Error!", error.message);
+                alert("Error submitting form. Please try again.");
+              });
+          });
+        } else {
+          console.error("Form with name 'google-sheet' not found.");
+        }
       });
     </script>
   </body>
